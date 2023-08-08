@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<p class="mess">
+    These are the details of the exchange rate of today. You can proceed to transfer the cash from <a href="">here </a>
+</p>
+<div class="tabledata">
+
+<table border="1">
+{% for data in datas%}
+        <tr rowspan="2">
+            <td >
+                {{data}}
+            </td>
+        </tr>
+{% endfor %}
+</table>
+<div>
+{% endblock content %}

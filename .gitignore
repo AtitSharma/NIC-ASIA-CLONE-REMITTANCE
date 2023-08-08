@@ -1,0 +1,4 @@
+bank_env
+db.sqlite3
+staticfiles
+.env

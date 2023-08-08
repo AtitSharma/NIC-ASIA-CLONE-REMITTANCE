@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for message in messages %}
+    <p class="mess">{{message}}</p>
+{% endfor %}
+
+    <p class="mess" id="mess"></p>
+
+
+<form class="formclass" method="post" id="formdata" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <label for="user">User Name</label>
+    <input type="text" value="{{my_info.user}}" readonly><br><br>
+    <label for="gender">Gender</label>
+    <select name="gender"><br><br>
+        <option value="choosen">{{my_info.gender}}</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="others">Others</option>
+      </select><br><br>
+    <label for="account_number">Account Number</label>
+    <input type="text" value="{{my_info.account_number}}" readonly><br><br>
+    <label for="firstname"> First Name</label>
+    <input type="text" value="{{my_info.user.first_name}}" name="firstname" required><br><br>
+    <label for="lastname">Last Name</label>
+    <input type="text" value="{{my_info.user.last_name}}" name="lastname" required><br><br>
+    <label for="lastname">Email</label>
+    <input type="text" value="{{my_info.user.email}}" readonly><br><br>
+    <label for="Image">Image</label>
+    <input type="file" value="{{my_info.photos}}" name="image"><br><br>
+    <input class="SubmitButton" id="submit" type="submit" value="Submit" onclick="clicked({{my_info.id}})">
+</form>
+<br>
+<a href="{% url 'user:myprofile' request.user.id  %}" onclick="logout()"><button class="nav-buttons">Log Out</button></a>
+
+<script>
+
+
+    
+    function getCSRFToken() {
+        var cookieValue = null;
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          if (cookie.startsWith('csrftoken=')) {
+            cookieValue = cookie.substring('csrftoken='.length, cookie.length);
+            break;
+          }
+        }
+        return cookieValue;
+      }
+    
+      function clicked(id){
+        event.preventDefault();
+        var formdata=$("#formdata").serializeArray();
+        var JsonData={}
+
+        for(var i=0;i<formdata.length;i++){
+            var item =formdata[i];
+            JsonData[item.name]=item.value;
+
+        }
+        var jsonStr = JSON.stringify(JsonData);
+        var SubmitURL="{% url 'user:myprofile' 0 %}".replace('0',id);
+        $.ajax({
+            url : SubmitURL,
+            type:'POST',
+            contentType:"application/json",
+            data:jsonStr,
+            headers:{
+                'X-CSRFToken': getCSRFToken()
+            },
+            success: function(response){
+                console.log(response.message)
+                $("#mess").html(response.message)
+            }
+
+        })
+
+        
+
+      }
+
+    function logout(){
+        event.preventDefault();
+        if (confirm("Do you really want to logout !!! ")) {
+ 
+            var url = "{% url 'user:logout' %}";
+            window.location.href = url;
+          }
+        }
+    
+
+</script>
+
+
+
+{% endblock content %}

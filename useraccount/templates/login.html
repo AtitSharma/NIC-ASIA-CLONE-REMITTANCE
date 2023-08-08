@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<br>
+{% for message in messages %}
+    <p class="mess">{{message}}</p>
+{% endfor %}
+    <body>
+        <div class="formclass">
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="email">Email</label>
+                <input type="email" placeholder="example@example.com" name="email" required><br><br>
+                <label for="password1">Password</label>
+                <input type="password" placeholder="password" name="password" required><br><br>
+                <input type="submit" class="SubmitButton"></a>
+            </form>
+            Need An Account Proceed to  <a href="{% url 'user:register' %}"> Register</a>
+        
+        
+        </div>
+    </body>
+{% endblock content %}
+

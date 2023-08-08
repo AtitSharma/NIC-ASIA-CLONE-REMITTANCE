@@ -1,0 +1,21 @@
+{% load static %}
+    <div class="logo">
+        <img src="{% static 'images/nic.webp' %}">  
+    </div>
+    <div>
+        <nav class="nav">
+            <a href="{% url 'bank:home' %}"><button class="nav-buttons">ABC BANK</button></a>
+            <a href="{% url 'remittance:details' %}"><button class="nav-buttons">Remitance</button></a>
+            <button class="nav-buttons">Transfer</button>
+            <button class="nav-buttons">History</button>
+            <button class="nav-buttons">Support</button>
+            <button class="nav-buttons">Notices</button>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'user:myprofile' request.user.id  %}"><button class="nav-buttons">My Profile</button></a>
+
+            {% else %}
+            <a href="{% url 'user:register' %}"><button class="nav-buttons">Register</button></a>
+            <a href="{% url 'user:login' %}"><button class="nav-buttons">Login</button></a>
+            {% endif %}
+        </nav>
+    </div>

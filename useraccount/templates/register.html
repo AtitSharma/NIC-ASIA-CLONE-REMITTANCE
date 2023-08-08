@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<br>
+{% for message in messages %}
+    <p class="mess">{{message}}</p>
+{% endfor %}
+    <body>
+        <div class="formclass">
+            <form action="{% url 'user:register' %}" method="post">
+                {% csrf_token %}
+                <label for="username">Username</label>
+                <input type="text" placeholder="John Cena" name="username"><br><br>
+                <label for="email">Email</label>
+                <input type="email" placeholder="example@example.com" name="email"><br><br>
+                <label for="password1">Password</label>
+                <input type="password" placeholder="password" name="password1"><br><br>
+                <label for="password2">Password Repeat</label>
+                <input type="password" placeholder="password" name="password2"><br><br>
+                <input type="submit" value="Register Now" class="SubmitButton"><br><br>
+            </form>
+            Already Have Account ? Proceed to <a href="{% url 'user:login' %}">Login</a>
+        </div>
+    </body>
+{% endblock content %}
+
