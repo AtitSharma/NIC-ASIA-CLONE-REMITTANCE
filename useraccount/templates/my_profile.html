@@ -13,10 +13,10 @@
     <input type="text" value="{{my_info.user}}" readonly><br><br>
     <label for="gender">Gender</label>
     <select name="gender"><br><br>
-        <option value="choosen">{{my_info.gender}}</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="others">Others</option>
+        <option value="{{my_info.gender}}">{{my_info.gender}}</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Others">Others</option>
       </select><br><br>
     <label for="account_number">Account Number</label>
     <input type="text" value="{{my_info.account_number}}" readonly><br><br>
@@ -32,6 +32,17 @@
 </form>
 <br>
 <a href="{% url 'user:myprofile' request.user.id  %}" onclick="logout()"><button class="nav-buttons">Log Out</button></a>
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
 
@@ -49,6 +60,7 @@
         }
         return cookieValue;
       }
+
     
       function clicked(id){
         event.preventDefault();

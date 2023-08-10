@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for history in histories %}
+        
+    
+    <br>
+    <div class="history">
+        <table cellspacing="0" border="1" align="center">
+            <tr>
+                <td>
+                    {{history.from_account}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{history.to_account}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{history.status}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{history.amount}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{history.transation_date}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    {% endfor%} 
+{% endblock content %}

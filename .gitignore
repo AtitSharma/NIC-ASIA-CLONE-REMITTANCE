@@ -2,3 +2,4 @@ bank_env
 db.sqlite3
 staticfiles
 .env
+__pycache__

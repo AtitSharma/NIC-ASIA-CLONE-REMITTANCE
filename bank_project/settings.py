@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'useraccount',
     'remittance',
     'abc_bank',
+    'payments',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,5 @@ MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, "media")
 
 AUTH_USER_MODEL="useraccount.User"
+
+LOGIN_URL="user:login"

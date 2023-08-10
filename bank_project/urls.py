@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include("abc_bank.urls")),
     path('user/',include("useraccount.urls")),
-    path("remittance/",include("remittance.urls"))
+    path("remittance/",include("remittance.urls")),
+    path("payments/",include("payments.urls")),
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

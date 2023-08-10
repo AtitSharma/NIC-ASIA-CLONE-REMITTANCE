@@ -63,6 +63,7 @@ class MyInformation(models.Model):
     gender=models.CharField(max_length=100,choices=GenderChoices.choices,default=GenderChoices.MALE)
     account_number=models.IntegerField(unique=True)
     photos=models.ImageField(upload_to="posts/",blank=True,null=True)
+    amount=models.IntegerField(default=0)
     
     def __str__(self):
         return self.user.username

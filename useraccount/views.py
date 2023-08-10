@@ -10,8 +10,8 @@ from useraccount.models import MyInformation
 import json
 from django.http import JsonResponse
 from useraccount.models import User,MyInformation
-from django.contrib.auth.mixins import UserPassesTestMixin
-
+# from django.contrib.auth.mixins import UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
 
 
 class LoginUser(View):
@@ -51,11 +51,11 @@ class UserLogout(View,LoginRequiredMixin):
         logout(request)
         return redirect("bank:home")
     
-    
-    
-    
-class MyprofileView(LoginRequiredMixin,UserPassesTestMixin,View):
+class MyprofileView(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
+        test=self.test_func()
+        if not test:
+            raise PermissionDenied()
         pk=self.kwargs.get("pk")
         my_information=MyInformation.objects.filter(user__id=pk).first()
         context={

@@ -6,8 +6,8 @@
         <nav class="nav">
             <a href="{% url 'bank:home' %}"><button class="nav-buttons">ABC BANK</button></a>
             <a href="{% url 'remittance:details' %}"><button class="nav-buttons">Remitance</button></a>
-            <button class="nav-buttons">Transfer</button>
-            <button class="nav-buttons">History</button>
+           <a href="{% url 'pay:checkout' %}"> <button class="nav-buttons">Transfer</button></a>
+            <a href="{% url 'pay:history' %}"><button class="nav-buttons">History</button></a>
             <button class="nav-buttons">Support</button>
             <button class="nav-buttons">Notices</button>
             {% if request.user.is_authenticated %}
