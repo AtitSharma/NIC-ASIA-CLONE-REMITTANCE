@@ -1,4 +1,4 @@
-from useraccount.models import User,MyInformation
+from useraccount.models import User,MyInformation,Token
 from django.db.models import Q
 from django.contrib import messages
 import random
@@ -39,6 +39,8 @@ def user_save(request):
     email=request.POST.get("email")
     password1=request.POST.get("password1")
     user=User.objects.create_user(username=username,email=email,password=password1)
+    user.is_active=False
+    user.save()
     account_number=account_number_create()
     my_info=MyInformation.objects.filter(account_number=account_number).first()
     if my_info:

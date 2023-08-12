@@ -31,6 +31,7 @@ class CheckOutView(LoginRequiredMixin,View):
             debtor_info.amount+=amount
             my_info.save()
             debtor_info.save()
+            messages.add_message(request,messages.INFO,"Successfully Transferred the Cash ")
             return redirect("bank:home")
 
         
@@ -46,7 +47,7 @@ class CheckOutView(LoginRequiredMixin,View):
 
 class HistoryView(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
-        histories=PaymentHistory.objects.filter(user=request.user)
+        histories=PaymentHistory.objects.filter(user=request.user).order_by("-transation_date")
         context={
             "histories":histories
         }

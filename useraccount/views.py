@@ -9,10 +9,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from useraccount.models import MyInformation
 import json
 from django.http import JsonResponse
-from useraccount.models import User,MyInformation
+from useraccount.models import User,MyInformation,Token
 # from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
-
+from useraccount.mails import send_mail_to_user
 
 class LoginUser(View):
     def post(self,request,*args,**kwargs):
@@ -37,9 +37,13 @@ class LoginUser(View):
 class RegisterUser(View):
     def post(self,request,*args,**kwargs):
         auth=authenticate_credentials(request)
+        email=request.POST.get("email")
         if auth:
             user_save(request)
-            messages.add_message(request,messages.INFO,"Success")
+            messages.add_message(request,messages.INFO,
+            f"Dear User a E-Mail has been Sent To Your mail {email} Make\
+            Sure To verify from the email ")
+            send_mail_to_user(email)
             return redirect("bank:home")
         return redirect("user:register")
         
@@ -88,6 +92,22 @@ class MyprofileView(LoginRequiredMixin,View):
             return False
         return True
  
+ 
+ 
+class VerifyTokenView(View):
+    def get(self,request,*args,**kwargs):
+        token=self.kwargs.get("token")
+        user_token=Token.objects.filter(key=token).first()
+        if user_token:
+            user=user_token.user
+            user.is_active=True
+            user.save()
+            messages.add_message(request,messages.INFO,"Successfully Verified Procceed To Login")
+            return redirect("bank:home")
+        messages.add_message(request,messages.INFO,"Verification Failed ")
+        return redirect("bank:home")  
+            
+            
 
         
         

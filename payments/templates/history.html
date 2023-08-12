@@ -1,37 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
+<br>
+
+{% if histories %}
+<p class="history_message"> SEE ALL YOUR PAYMENT HISTORY OVER HERE </p>
     {% for history in histories %}
-        
+    <body>
+        </div>
+        </div>
+        <div class="container">
+            <div class="first">
+
+            </div>
+            <div class="midpost">
     
-    <br>
-    <div class="history">
-        <table cellspacing="0" border="1" align="center">
-            <tr>
-                <td>
-                    {{history.from_account}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{history.to_account}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{history.status}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{history.amount}}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{history.transation_date}}
-                </td>
-            </tr>
-        </table>
-    </div>
+                <div class="post">
+                    <div class="Cpost">
+                        <div>
+                            
+                            <h1>{{history.user}}</h1><br>
+                            <p>{{history.user.first_name}} {{history.user.last_name}}</p>
+                            <h2>{{history.transation_date}}</h2>
+                        </div>
+                    </div>
+                    <p>The Transation is done on {{history.transation_date}}</p>
+                    <p>From The Account {{history.from_account}}</p>
+                    <p>With The Account {{history.to_account}}</p>
+                    <p>The Transation is done on {{history.transation_date}}</p>
+                    <p>Amount Transation :  {{history.amount}}</p>
+                    <p>Transation Status : {{history.status}}</p>
+                </div>
+    
+            </div>
+            <div class="last">
+    
+            </div>
+    
+    </body>
+    
+    </html>
     {% endfor%} 
+{% else %}
+<p> SORRY NOTHING TO SHOW  </p>
+{% endif %}
 {% endblock content %}
