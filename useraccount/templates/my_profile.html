@@ -31,7 +31,7 @@
     <input class="SubmitButton" id="submit" type="submit" value="Submit" onclick="clicked({{my_info.id}})">
 </form>
 <br>
-<a href="{% url 'user:myprofile' request.user.id  %}" onclick="logout()"><button class="nav-buttons">Log Out</button></a>
+<a href="{% url 'user:myprofile' request.user.id  %}" onclick="logout()"><button class="nav-buttons" style="color:white; background-color:red;">Log Out</button></a>
 
 
 
