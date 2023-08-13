@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'remittance',
     'abc_bank',
     'payments',
+    'embed_video',
 ]
 
 MIDDLEWARE = [
