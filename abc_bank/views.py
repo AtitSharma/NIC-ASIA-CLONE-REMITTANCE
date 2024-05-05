@@ -14,11 +14,7 @@ class HomeView(View):
         }
         return render(request,"home.html",context)
     
-    
-    
-class SupportView(View):
-    def get(self,request,*args,**kwargs):
-        return render(request,"support.html")
+
     
 
         

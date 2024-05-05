@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+# import ssl
+# import certifi
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +29,7 @@ SECRET_KEY = 'django-insecure--64irh1-htau$s1u%(vnv6i(c8%k0+tj(&s9uyrjlih^4*#%rr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -150,3 +152,8 @@ EMAIL_PORT=587
 EMAIL_HOST_USER=config("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD=config("EMAIL_HOST_PASSWORD")
 PASSWORD_RESET_TIMEOUT=1444
+KHALTI_INITIATE_URL = config("KHALTI_INITIATE_URL")
+KHALTI_LOOK_URL = config("KHALTI_LOOK_URL")
+KHATI_SECRET_KEY= config("KHATI_SECRET_KEY")
+# ssl_context = ssl.create_default_context(cafile=certifi.where())
+# EMAIL_SSL_CONTEXT = ssl_context

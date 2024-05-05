@@ -57,9 +57,9 @@ class UserLogout(View,LoginRequiredMixin):
     
 class MyprofileView(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
-        test=self.test_func()
-        if not test:
-            raise PermissionDenied()
+        # test=self.test_func()
+        # if not test:
+        #     raise PermissionDenied()
         pk=self.kwargs.get("pk")
         my_information=MyInformation.objects.filter(user__id=pk).first()
         context={

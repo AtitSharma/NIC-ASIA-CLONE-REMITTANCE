@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for message in messages %}
+    <p class="mess">{{message}}</p>
+{% endfor %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Load Now">
+</form>
+
+
+{% endblock content %}

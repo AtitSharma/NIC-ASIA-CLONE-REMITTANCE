@@ -3,14 +3,23 @@
 from useraccount.models import User,Token
 from django.conf import settings
 from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+import requests
+import certifi
+
 
 
 def send_mail_to_user(email): 
     user=User.objects.get(email=email)
-    user_id =user.id
+    # user_id =user.id
     user_token=Token.objects.create(user=user)
     subject="Verifyyy"
     message=f"Verify Your Email in  http://localhost:8000/user/verify/{user_token}  Dont share this link to anyone"
     from_email=settings.EMAIL_HOST_USER
     recipient_list=[email] 
-    send_mail(subject,message,from_email,recipient_list)
+    send_mail(subject, message, from_email, recipient_list)
+
+
+
+
+

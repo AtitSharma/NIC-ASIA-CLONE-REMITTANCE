@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for message in messages %}
+    <p class="mess">{{message}}</p>
+{% endfor %}
+
+<body>
+    <form action="https://uat.esewa.com.np/epay/main" method="POST">
+    <input value="{{amount}}" name="tAmt" type="hidden">
+    <input value="{{amount}}" name="amt" type="hidden">
+    <input value="0" name="txAmt" type="hidden">
+    <input value="0" name="psc" type="hidden">
+    <input value="0" name="pdc" type="hidden">
+    <input value="{{secret}}" name="scd" type="hidden">
+    <input value="{{transaction_id}}" name="pid" type="hidden">
+    <input value="{{su}}" type="hidden" name="su">
+    <input value="{{fu}}" type="hidden" name="fu">
+    <input value="Submit" type="submit" id="click" type="hidden">
+    </form>
+</body> 
+
+
+<script>
+    document.getElementById("click").click();
+</script>
+{% endblock content %}

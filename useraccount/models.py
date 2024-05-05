@@ -59,10 +59,19 @@ class GenderChoices(models.TextChoices):
     FEMALE="female","FEMALE"
     OTHERS="others",'OTHERS'
 
+class Status(models.TextChoices):
+    INITIATE="initiate","INITIATE"
+    SUCCESS="success","SUCCESS"
+    FAIL="fail",'FAIL'
+
+class PaymentChoices(models.TextChoices):
+    ESEWA="esewa","ESEWA"
+    KHALTI="khalti","KHALTI"
+    OTHERS="others",'OTHERS'
       
 
 class MyInformation(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="profile")
     gender=models.CharField(max_length=100,choices=GenderChoices.choices,default=GenderChoices.MALE)
     account_number=models.IntegerField(unique=True)
     photos=models.ImageField(upload_to="posts/",blank=True,null=True)
